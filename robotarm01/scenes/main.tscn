@@ -1,0 +1,100 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1df8vqnvl1q2"]
+
+[ext_resource type="PackedScene" uid="uid://qsdg3ly6w1kl" path="res://scenes/ui_motor_ctrl.tscn" id="1_7l60p"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_l5vyc"]
+[ext_resource type="PackedScene" uid="uid://bw1d38t8ctwen" path="res://scenes/ui_connect.tscn" id="2_feh61"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_l5vyc")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="vbox" type="MarginContainer" parent="UILayer"]
+offset_right = 1152.0
+offset_bottom = 162.0
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 3
+
+[node name="Control" type="Control" parent="UILayer/vbox"]
+layout_mode = 2
+
+[node name="vboxTitle" type="VBoxContainer" parent="UILayer/vbox/Control"]
+layout_mode = 2
+offset_right = 1140.0
+offset_bottom = 39.0
+size_flags_vertical = 0
+
+[node name="hbox" type="HBoxContainer" parent="UILayer/vbox/Control/vboxTitle"]
+layout_mode = 2
+
+[node name="lblTitle" type="Label" parent="UILayer/vbox/Control/vboxTitle/hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Điều khiển cánh tay 4 DoF"
+
+[node name="btConnect" type="Button" parent="UILayer/vbox/Control/vboxTitle/hbox"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Disconnected"
+
+[node name="HSeparator" type="HSeparator" parent="UILayer/vbox/Control/vboxTitle"]
+layout_mode = 2
+
+[node name="vboxMotors" type="VBoxContainer" parent="UILayer/vbox/Control"]
+layout_mode = 2
+offset_left = 16.0
+offset_top = 40.0
+offset_right = 290.0
+offset_bottom = 202.0
+size_flags_horizontal = 0
+
+[node name="MotorCtrl" parent="UILayer/vbox/Control/vboxMotors" instance=ExtResource("1_7l60p")]
+layout_mode = 2
+Title = "Motor 1 (Pin 4)"
+
+[node name="MotorCtrl2" parent="UILayer/vbox/Control/vboxMotors" instance=ExtResource("1_7l60p")]
+layout_mode = 2
+Title = "Motor 2 (Pin 5)"
+MotorId = 1
+
+[node name="MotorCtrl3" parent="UILayer/vbox/Control/vboxMotors" instance=ExtResource("1_7l60p")]
+layout_mode = 2
+Title = "Motor 3 (Pin 6)"
+MotorId = 2
+
+[node name="MotorCtrl4" parent="UILayer/vbox/Control/vboxMotors" instance=ExtResource("1_7l60p")]
+layout_mode = 2
+Title = "Motor 3 (Pin 7)"
+MotorId = 3
+
+[node name="vboxCmds" type="VBoxContainer" parent="UILayer/vbox/Control"]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 43.0
+offset_right = 374.0
+offset_bottom = 83.0
+
+[node name="btSendMulti" type="Button" parent="UILayer/vbox/Control/vboxCmds"]
+layout_mode = 2
+disabled = true
+text = "Gửi lệnh"
+
+[node name="cSrv" parent="UILayer/vbox/Control" instance=ExtResource("2_feh61")]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -208.0
+offset_top = 40.0
+offset_right = 0.0
+offset_bottom = 153.0
+grow_horizontal = 0
+
+[connection signal="button_up" from="UILayer/vbox/Control/vboxTitle/hbox/btConnect" to="." method="_on_btconnect_button_up"]
+[connection signal="button_up" from="UILayer/vbox/Control/vboxCmds/btSendMulti" to="." method="_on_btsendmulti_button_up"]
+[connection signal="sgn_connect" from="UILayer/vbox/Control/cSrv" to="." method="_on_csrv_connect"]

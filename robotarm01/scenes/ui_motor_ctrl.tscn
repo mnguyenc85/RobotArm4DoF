@@ -1,0 +1,111 @@
+[gd_scene load_steps=2 format=3 uid="uid://qsdg3ly6w1kl"]
+
+[ext_resource type="Script" path="res://scenes/ui_motor_ctrl.gd" id="1_vttjd"]
+
+[node name="MotorCtrl" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -878.0
+offset_bottom = -525.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 3
+script = ExtResource("1_vttjd")
+
+[node name="vbox1" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="lblTitle" type="Label" parent="vbox1"]
+self_modulate = Color(0.498039, 0.74902, 1, 1)
+layout_mode = 2
+text = "Motor 1"
+
+[node name="hboxAngle" type="HBoxContainer" parent="vbox1"]
+layout_mode = 2
+
+[node name="indent1" type="Control" parent="vbox1/hboxAngle"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="lbl1" type="Label" parent="vbox1/hboxAngle"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Góc"
+
+[node name="btMinus" type="Button" parent="vbox1/hboxAngle"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "-"
+
+[node name="lbl11" type="Label" parent="vbox1/hboxAngle"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "90"
+horizontal_alignment = 1
+
+[node name="btPlus" type="Button" parent="vbox1/hboxAngle"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "+"
+
+[node name="btOnline" type="CheckButton" parent="vbox1/hboxAngle"]
+layout_mode = 2
+tooltip_text = "Cập nhật liên tục"
+
+[node name="hboxLimit" type="HBoxContainer" parent="vbox1"]
+layout_mode = 2
+
+[node name="indent2" type="Control" parent="vbox1/hboxLimit"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="lblMin" type="Label" parent="vbox1/hboxLimit"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="gap" type="Control" parent="vbox1/hboxLimit"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+
+[node name="lblMax" type="Label" parent="vbox1/hboxLimit"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "180"
+horizontal_alignment = 1
+
+[node name="hboxSpd" type="HBoxContainer" parent="vbox1"]
+layout_mode = 2
+
+[node name="indent3" type="Control" parent="vbox1/hboxSpd"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="lbl3" type="Label" parent="vbox1/hboxSpd"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Tốc độ"
+
+[node name="sliderSpd" type="HSlider" parent="vbox1/hboxSpd"]
+custom_minimum_size = Vector2(136, 0)
+layout_mode = 2
+size_flags_vertical = 4
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+
+[node name="lblSpd" type="Label" parent="vbox1/hboxSpd"]
+layout_mode = 2
+text = "1"
+
+[node name="HSeparator" type="HSeparator" parent="vbox1"]
+layout_mode = 2
+
+[connection signal="button_down" from="vbox1/hboxAngle/btMinus" to="." method="_on_btminus_button_down"]
+[connection signal="button_up" from="vbox1/hboxAngle/btMinus" to="." method="_on_btminus_button_up"]
+[connection signal="button_down" from="vbox1/hboxAngle/btPlus" to="." method="_on_btplus_button_down"]
+[connection signal="button_up" from="vbox1/hboxAngle/btPlus" to="." method="_on_btplus_button_up"]
+[connection signal="drag_ended" from="vbox1/hboxSpd/sliderSpd" to="." method="_on_sliderspd_drag_ended"]

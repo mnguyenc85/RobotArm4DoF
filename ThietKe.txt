@@ -1,0 +1,82 @@
+Điều khiển cánh tay robot 4 bâc tự do qua wifi
+1. Phần cứng
+	Cánh tay
+	- Động cơ servo SG90
+	Mạch
+	- Arduino sensor shield v5.0
+	- UNO + Wifi R3 ATmega328P
+	- OLED 0.91							(NOT IMPLEMENTION)
+2. Kết nối
+	- Motor 1 -> D4
+	- Motor 2 -> D5
+	- Motor 3 -> D6
+	- Motor 4 -> D7
+	
+3. Giao thức COM
+	Bản tin
+		S	':'			Ký tự bắt đầu
+		C	1 byte		command (HEX)
+		A	2 byte		start address
+			0-1 byte	number of address
+		D	n byte		data
+			n = max(1, A)
+		E	';'			Ký tự kết thúc
+
+	Commands:
+		1	Write
+		2	Write multi		(NOT IMPLEMENTION)
+		4	Read
+		5	Read multi
+		7	Reset timer
+		a	Acknowledge
+		e	ESP8266 command
+		f	Error
+				01: invalid command
+				02: over memory range
+	Address:
+		00	motor1 position
+		01	motor2 position
+		02	motor3 position
+		03	motor4 position
+
+		04	motor1 target
+		05	motor2 target
+		06	motor3 target
+		07	motor4 target
+
+		08	motor1 speed
+		09	motor2 speed
+		0a	motor3 speed
+		0b	motor4 speed
+		
+		10	m1 min pos
+		11	m2 min pos
+		12	m3 min pos
+		13	m4 min pos
+		14	m1 max pos
+		15	m2 max pos
+		16	m3 max pos
+		17	m4 max pos
+		
+	ESP8266 command
+		00	Read wifi info
+		01	xxxxxxxx	Set SSID
+		02	xxxxxxxx	Set PW
+
+
+III. Cách sử dụng
+1. UNO + Wifi R3 ATmega328P
+	ATmega328 <-> ESP8266		1	1	0	0	0	0	0
+	USB <-> ATmega328			0	0	1	1	0	0	0
+	USB <-> ESP8266 (nạp)		0	0	0	0	1	1	1
+	USB <-> ESP8266				0	0	0	0	1	1	0
+	3 module độc lập			0	0	0	0	0	0	0
+
+IV. Cài đặt
+	1. Kết nối USB <-> ATmega328 -> nạp code: Robot4DoF_01.ino
+	2. Kết nối USB <-> ESP8266 (chế độ nạp) -> nạp code: Robot4DoF_01_ESP8266.ino
+	3. Sử dụng Godot engine chạy Robotarm01
+
+V. Bugs
+	- Nếu gửi bản tin quá dài (kể cả phản hồi) -> bị treo -> dự đoán do timer không reset
+	- Khi mới cắm điện, cần ấn reset nếu ko sẽ bị treo -> chưa rõ nguyên nhân

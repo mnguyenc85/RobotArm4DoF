@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw1d38t8ctwen"]
+
+[ext_resource type="Script" path="res://scenes/ui_connect.gd" id="1_vnldp"]
+
+[node name="cSrv" type="MarginContainer"]
+offset_top = -1.0
+offset_right = 40.0
+offset_bottom = 39.0
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+script = ExtResource("1_vnldp")
+
+[node name="grd" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 2
+
+[node name="lbl1" type="Label" parent="grd"]
+layout_mode = 2
+text = "Addr:"
+vertical_alignment = 1
+
+[node name="txtSrvAddr" type="LineEdit" parent="grd"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "192.168.0.103"
+
+[node name="lbl2" type="Label" parent="grd"]
+layout_mode = 2
+text = "Port:"
+vertical_alignment = 1
+
+[node name="txtSrvPort" type="LineEdit" parent="grd"]
+layout_mode = 2
+text = "8888"
+
+[node name="gap" type="Control" parent="grd"]
+layout_mode = 2
+
+[node name="btConnect" type="Button" parent="grd"]
+layout_mode = 2
+text = "Connect"
+
+[connection signal="button_up" from="grd/btConnect" to="." method="_on_btconnect_button_up"]
