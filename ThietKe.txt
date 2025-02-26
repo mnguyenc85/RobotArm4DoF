@@ -7,19 +7,20 @@
 	- UNO + Wifi R3 ATmega328P
 	- OLED 0.91							(NOT IMPLEMENTION)
 2. Kết nối
-	- Motor 1 -> D4
-	- Motor 2 -> D5
-	- Motor 3 -> D6
-	- Motor 4 -> D7
+	- Motor 1 -> 	D4
+	- Motor 2 -> 	D5
+	- Motor 3 -> 	D6
+	- Motor 4 -> 	D8
+	- 				D7: phát xung 400/800 ms để kiểm tra vòng lặp motor
 	
 3. Giao thức COM
 	Bản tin
 		S	':'			Ký tự bắt đầu
 		C	1 byte		command (HEX)
-		A	2 byte		start address
-			0-1 byte	number of address
+		A	2 byte		start address (HEX)
+		N	0|2 byte	number of address (HEX) A + N < 20
 		D	n byte		data
-			n = max(1, A)
+			n = max(1, N)
 		E	';'			Ký tự kết thúc
 
 	Commands:
@@ -78,5 +79,5 @@ IV. Cài đặt
 	3. Sử dụng Godot engine chạy Robotarm01
 
 V. Bugs
-	- Nếu gửi bản tin quá dài (kể cả phản hồi) -> bị treo -> dự đoán do timer không reset
-	- Khi mới cắm điện, cần ấn reset nếu ko sẽ bị treo -> chưa rõ nguyên nhân
+	- Nếu gửi bản tin quá dài (kể cả phản hồi) -> bị treo -> lỗi do bộ đêm commBuf nhỏ, thời gian xử lý truyền thông > tg timer -> tăng lên 128 bytes, tăng chu kỳ của timer
+	- Khi mới cắm điện, cần ấn reset nếu ko sẽ bị treo -> cũng do lỗi truyền thông trên

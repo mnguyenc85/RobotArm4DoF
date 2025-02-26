@@ -16,10 +16,10 @@ bool has_client = 0;
 byte wifi_delay = 1;
 
 byte LED_on = 0;
-SimpleTimer timer1(250);
+SimpleTimer timer1(500);
 SimpleTimer timer2(500);
 
-char commBuf[32];
+char commBuf[128];
 
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
@@ -183,6 +183,7 @@ void string4chars(char *dst, char *src, int l) {
   dst[i] = 0;
 }
 
+/* HEX String to int */
 int x2i(char *s, byte n) {
   int x = 0;
   for (byte i = 0; i < n; i++) {

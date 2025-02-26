@@ -28,7 +28,7 @@ byte LED_on = 0;
 byte LED1 = 0;
 SimpleTimer timer1(200);
 
-char commBuf[32];
+char commBuf[128];
 
 void setup() {
   Serial.begin(115200);
@@ -131,7 +131,7 @@ void process_cmd(int n) {
       if (n > 4) {
         int addr = x2i(&commBuf[1], 2);
         int n = x2i(&commBuf[3], 2);
-        if (n < 24) Motor_readMulti(addr, n);
+        if (addr + n < 24) Motor_readMulti(addr, n);
         else Serial.print(":f02;");
       }
       else Serial.print(":f01;");
