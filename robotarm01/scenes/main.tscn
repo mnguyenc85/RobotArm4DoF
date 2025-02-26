@@ -1,100 +1,114 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1df8vqnvl1q2"]
+[gd_scene load_steps=5 format=3 uid="uid://b1df8vqnvl1q2"]
 
 [ext_resource type="PackedScene" uid="uid://qsdg3ly6w1kl" path="res://scenes/ui_motor_ctrl.tscn" id="1_7l60p"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_l5vyc"]
 [ext_resource type="PackedScene" uid="uid://bw1d38t8ctwen" path="res://scenes/ui_connect.tscn" id="2_feh61"]
+[ext_resource type="PackedScene" uid="uid://cfe12qmqjyjxa" path="res://scenes/history_list.tscn" id="3_v548e"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_l5vyc")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
-[node name="vbox" type="MarginContainer" parent="UILayer"]
-offset_right = 1152.0
-offset_bottom = 162.0
-theme_override_constants/margin_left = 6
-theme_override_constants/margin_top = 3
+[node name="Control" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 0
 
-[node name="Control" type="Control" parent="UILayer/vbox"]
+[node name="vboxTitle" type="VBoxContainer" parent="UILayer/Control"]
 layout_mode = 2
-
-[node name="vboxTitle" type="VBoxContainer" parent="UILayer/vbox/Control"]
-layout_mode = 2
-offset_right = 1140.0
-offset_bottom = 39.0
+offset_left = 6.0
+offset_top = 12.0
+offset_right = 922.0
+offset_bottom = 56.0
 size_flags_vertical = 0
 
-[node name="hbox" type="HBoxContainer" parent="UILayer/vbox/Control/vboxTitle"]
+[node name="hbox" type="HBoxContainer" parent="UILayer/Control/vboxTitle"]
 layout_mode = 2
 
-[node name="lblTitle" type="Label" parent="UILayer/vbox/Control/vboxTitle/hbox"]
+[node name="lblTitle" type="Label" parent="UILayer/Control/vboxTitle/hbox"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Điều khiển cánh tay 4 DoF"
+theme_override_font_sizes/font_size = 20
+text = "Điều khiển cánh tay 4 bậc tự do"
 
-[node name="btConnect" type="Button" parent="UILayer/vbox/Control/vboxTitle/hbox"]
+[node name="btConnect" type="Button" parent="UILayer/Control/vboxTitle/hbox"]
 layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
 text = "Disconnected"
 
-[node name="HSeparator" type="HSeparator" parent="UILayer/vbox/Control/vboxTitle"]
+[node name="HSeparator" type="HSeparator" parent="UILayer/Control/vboxTitle"]
 layout_mode = 2
 
-[node name="vboxMotors" type="VBoxContainer" parent="UILayer/vbox/Control"]
+[node name="vboxMotors" type="GridContainer" parent="UILayer/Control"]
 layout_mode = 2
-offset_left = 16.0
-offset_top = 40.0
-offset_right = 290.0
-offset_bottom = 202.0
+offset_left = 18.0
+offset_top = 58.0
+offset_right = 586.0
+offset_bottom = 338.0
 size_flags_horizontal = 0
+columns = 2
 
-[node name="MotorCtrl" parent="UILayer/vbox/Control/vboxMotors" instance=ExtResource("1_7l60p")]
+[node name="MotorCtrl" parent="UILayer/Control/vboxMotors" instance=ExtResource("1_7l60p")]
 layout_mode = 2
 Title = "Motor 1 (Pin 4)"
 
-[node name="MotorCtrl2" parent="UILayer/vbox/Control/vboxMotors" instance=ExtResource("1_7l60p")]
+[node name="MotorCtrl2" parent="UILayer/Control/vboxMotors" instance=ExtResource("1_7l60p")]
 layout_mode = 2
 Title = "Motor 2 (Pin 5)"
 MotorId = 1
 
-[node name="MotorCtrl3" parent="UILayer/vbox/Control/vboxMotors" instance=ExtResource("1_7l60p")]
+[node name="MotorCtrl3" parent="UILayer/Control/vboxMotors" instance=ExtResource("1_7l60p")]
 layout_mode = 2
 Title = "Motor 3 (Pin 6)"
 MotorId = 2
 
-[node name="MotorCtrl4" parent="UILayer/vbox/Control/vboxMotors" instance=ExtResource("1_7l60p")]
+[node name="MotorCtrl4" parent="UILayer/Control/vboxMotors" instance=ExtResource("1_7l60p")]
 layout_mode = 2
-Title = "Motor 3 (Pin 7)"
+Title = "Motor 4 (Pin 8)"
 MotorId = 3
 
-[node name="vboxCmds" type="VBoxContainer" parent="UILayer/vbox/Control"]
+[node name="vboxCmds" type="VBoxContainer" parent="UILayer/Control"]
 layout_mode = 0
-offset_left = 300.0
-offset_top = 43.0
-offset_right = 374.0
-offset_bottom = 83.0
+offset_left = 6.0
+offset_top = 346.0
+offset_right = 97.0
+offset_bottom = 386.0
 
-[node name="btSendMulti" type="Button" parent="UILayer/vbox/Control/vboxCmds"]
+[node name="btSendMulti" type="Button" parent="UILayer/Control/vboxCmds"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 disabled = true
 text = "Gửi lệnh"
 
-[node name="cSrv" parent="UILayer/vbox/Control" instance=ExtResource("2_feh61")]
-visible = false
+[node name="HistoryList" parent="UILayer/Control" instance=ExtResource("3_v548e")]
+custom_minimum_size = Vector2(820, 186)
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 106.0
+offset_top = 346.0
+offset_right = 926.0
+offset_bottom = 526.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="cSrv" parent="UILayer/Control" instance=ExtResource("2_feh61")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -208.0
-offset_top = 40.0
-offset_right = 0.0
-offset_bottom = 153.0
+offset_left = 720.0
+offset_top = 58.0
+offset_right = 928.0
+offset_bottom = 186.0
 grow_horizontal = 0
 
-[connection signal="button_up" from="UILayer/vbox/Control/vboxTitle/hbox/btConnect" to="." method="_on_btconnect_button_up"]
-[connection signal="button_up" from="UILayer/vbox/Control/vboxCmds/btSendMulti" to="." method="_on_btsendmulti_button_up"]
-[connection signal="sgn_connect" from="UILayer/vbox/Control/cSrv" to="." method="_on_csrv_connect"]
+[connection signal="button_up" from="UILayer/Control/vboxTitle/hbox/btConnect" to="." method="_on_btconnect_button_up"]
+[connection signal="button_up" from="UILayer/Control/vboxCmds/btSendMulti" to="." method="_on_btsendmulti_button_up"]
+[connection signal="sgn_connect" from="UILayer/Control/cSrv" to="." method="_on_csrv_connect"]

@@ -13,10 +13,10 @@ SimpleTimer timerMotor(40);        // max speed = 1deg/2ms == 20 => 40ms = 20 * 
 
 #define M1_MIN 0
 #define M1_MAX 180
-#define M2_MIN 48
+#define M2_MIN 16
 #define M2_MAX 175
-#define M3_MIN 0x48
-#define M3_MAX 0xb0
+#define M3_MIN 32
+#define M3_MAX 175
 #define M4_MIN 0
 #define M4_MAX 180
 

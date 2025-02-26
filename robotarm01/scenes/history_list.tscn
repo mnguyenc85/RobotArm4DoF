@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfe12qmqjyjxa"]
+
+[ext_resource type="Script" path="res://scenes/history_list.gd" id="1_27o28"]
+
+[node name="HistoryList" type="MarginContainer"]
+clip_children = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_27o28")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.121569, 0.121569, 0.247059, 1)
+
+[node name="lst" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 2

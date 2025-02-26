@@ -12,34 +12,48 @@ theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 script = ExtResource("1_vnldp")
 
-[node name="grd" type="GridContainer" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.247059, 0.247059, 0.247059, 1)
+
+[node name="padding" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="grd" type="GridContainer" parent="padding"]
 layout_mode = 2
 columns = 2
 
-[node name="lbl1" type="Label" parent="grd"]
+[node name="lbl1" type="Label" parent="padding/grd"]
 layout_mode = 2
 text = "Addr:"
 vertical_alignment = 1
 
-[node name="txtSrvAddr" type="LineEdit" parent="grd"]
+[node name="txtSrvAddr" type="LineEdit" parent="padding/grd"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "192.168.0.103"
 
-[node name="lbl2" type="Label" parent="grd"]
+[node name="lbl2" type="Label" parent="padding/grd"]
 layout_mode = 2
 text = "Port:"
 vertical_alignment = 1
 
-[node name="txtSrvPort" type="LineEdit" parent="grd"]
+[node name="txtSrvPort" type="LineEdit" parent="padding/grd"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "8888"
 
-[node name="gap" type="Control" parent="grd"]
+[node name="gap" type="Control" parent="padding/grd"]
 layout_mode = 2
 
-[node name="btConnect" type="Button" parent="grd"]
+[node name="btConnect" type="Button" parent="padding/grd"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Connect"
 
-[connection signal="button_up" from="grd/btConnect" to="." method="_on_btconnect_button_up"]
+[connection signal="button_up" from="padding/grd/btConnect" to="." method="_on_btconnect_button_up"]

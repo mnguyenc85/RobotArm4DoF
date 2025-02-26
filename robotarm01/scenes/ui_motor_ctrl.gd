@@ -101,12 +101,13 @@ func update_mem(addr, data):
 	#print("Update mem %d: %d = %d" % [_mid, addr, data])
 	match addr - _mid:
 		4:
-			#_angle0 = data
+			_angle0 = data
 			angle = data
 			lbl_angle.text = str(data)
 		8:
 			_spd0 = data
 			slider_spd.value = data
+			lbl_spd.text = str(data)
 		16:
 			lbl_min.text = str(data)
 		20:

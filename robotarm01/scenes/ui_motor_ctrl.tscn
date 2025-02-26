@@ -6,8 +6,8 @@
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -878.0
-offset_bottom = -525.0
+offset_right = -686.0
+offset_bottom = -517.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 6
@@ -20,6 +20,7 @@ layout_mode = 2
 [node name="lblTitle" type="Label" parent="vbox1"]
 self_modulate = Color(0.498039, 0.74902, 1, 1)
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Motor 1"
 
 [node name="hboxAngle" type="HBoxContainer" parent="vbox1"]
@@ -32,22 +33,26 @@ layout_mode = 2
 [node name="lbl1" type="Label" parent="vbox1/hboxAngle"]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Góc"
 
 [node name="btMinus" type="Button" parent="vbox1/hboxAngle"]
-custom_minimum_size = Vector2(32, 0)
+custom_minimum_size = Vector2(36, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "-"
 
 [node name="lbl11" type="Label" parent="vbox1/hboxAngle"]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "90"
 horizontal_alignment = 1
 
 [node name="btPlus" type="Button" parent="vbox1/hboxAngle"]
-custom_minimum_size = Vector2(32, 0)
+custom_minimum_size = Vector2(36, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "+"
 
 [node name="btOnline" type="CheckButton" parent="vbox1/hboxAngle"]
@@ -87,6 +92,7 @@ layout_mode = 2
 [node name="lbl3" type="Label" parent="vbox1/hboxSpd"]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Tốc độ"
 
 [node name="sliderSpd" type="HSlider" parent="vbox1/hboxSpd"]
@@ -99,6 +105,7 @@ value = 1.0
 
 [node name="lblSpd" type="Label" parent="vbox1/hboxSpd"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "1"
 
 [node name="HSeparator" type="HSeparator" parent="vbox1"]
