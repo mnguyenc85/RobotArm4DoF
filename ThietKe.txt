@@ -63,6 +63,10 @@
 		00	Read wifi info
 		01	xxxxxxxx	Set SSID
 		02	xxxxxxxx	Set PW
+		03	WiFi start
+		04	WiFi disconnected
+		05	Client connected: IP
+		06	Client disconnected
 
 
 III. Cách sử dụng
